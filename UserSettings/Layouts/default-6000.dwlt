@@ -1063,7 +1063,11 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -1.7223877, y: -4.9289813, z: -0.11411044}
     speed: 2
+<<<<<<< HEAD
     m_Value: {x: -1.7223877, y: -4.9289813, z: -0.11411044}
+=======
+    m_Value: {x: 0.069976844, y: -0.341615, z: 0.023098882}
+>>>>>>> ddd9e4d (PlayerMove)
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1115,7 +1119,11 @@ MonoBehaviour:
   m_Size:
     m_Target: 21.411005
     speed: 2
+<<<<<<< HEAD
     m_Value: 21.411005
+=======
+    m_Value: 7.6900907
+>>>>>>> ddd9e4d (PlayerMove)
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1371,9 +1379,15 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: aaf70000
     m_LastClickedID: 63402
     m_ExpandedIDs: 0000000018b60000
+=======
+    m_SelectedIDs: 36b60000
+    m_LastClickedID: 46646
+    m_ExpandedIDs: 
+>>>>>>> ddd9e4d (PlayerMove)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1402,7 +1416,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 0000000018b60000
+=======
+    m_ExpandedIDs: 
+>>>>>>> ddd9e4d (PlayerMove)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
