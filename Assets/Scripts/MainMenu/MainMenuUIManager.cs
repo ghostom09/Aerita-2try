@@ -5,6 +5,7 @@ public enum UIName
 {
     SettingUI,
     SaveUI,
+    QuitUI,
 }
 
 public enum SettingUI
@@ -19,6 +20,7 @@ public class MainMenuUIManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject saveUI;
+    [SerializeField] private GameObject quitUI;
     
     [Header("Settings")]
     [SerializeField] private GameObject graphic;
@@ -36,6 +38,10 @@ public class MainMenuUIManager : MonoBehaviour
             case UIName.SaveUI:
                 MainMenu();
                 saveUI.SetActive(true);
+                break;
+            case UIName.QuitUI:
+                MainMenu();
+                quitUI.SetActive(true);
                 break;
         }
     }
@@ -74,5 +80,6 @@ public class MainMenuUIManager : MonoBehaviour
     {
         settingUI.SetActive(false);
         saveUI.SetActive(false);
+        quitUI.SetActive(false);
     }
 }

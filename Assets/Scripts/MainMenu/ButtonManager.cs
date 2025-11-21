@@ -5,11 +5,21 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private MainMenuUIManager uIManager;
     public void StartGame()
     {
-        SceneManagement.instance.LoadScene(SceneName.Ghotom);
+        uIManager.UI(UIName.SaveUI);
     }
     public void QuitGame()
     {
+        uIManager.UI(UIName.QuitUI);
+    }
+
+    public void QuitYes()
+    {
         GameManager.instance.QuitGame();
+    }
+
+    public void QuitNo()
+    {
+        uIManager.MainMenu();
     }
     
     public void Setting()
