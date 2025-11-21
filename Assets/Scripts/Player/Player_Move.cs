@@ -10,17 +10,23 @@ public class Player_Move : MonoBehaviour
     private bool isHeld;
 
     private bool isDashing;
+    private bool canDash = true;
     public void SetMove(Vector2 movement)
     {
         if(!isDashing)
             rb.linearVelocityX = movement.x * state.moveSpeed;
     }
 
-    public void Dash()
-    {
-        isDashing = true;
-        StartCoroutine(Dashing());
-    }
+    // public void Dash()
+    // {
+    //     if (canDash)
+    //     {
+    //          isDashing = true;
+    //          canDash = false;
+    //          // StartCoroutine(Dashing());
+    //     }
+    //    
+    // }
     public void JumpStart()
     {
         if (isGrounded)
@@ -42,18 +48,30 @@ public class Player_Move : MonoBehaviour
         else if(!isGrounded && !isHeld) rb.linearVelocityY += Physics.gravity.y * 3 * Time.deltaTime;
     }
 
-    private IEnumerator Dashing()
-    {
-        float dashTime = 0;
-        int direction = rb.linearVelocityX > 0 ? 1 : -1;
-        while (dashTime < 0.15f)
-        {
-            rb.linearVelocity = new Vector2(state.dashForce * direction,0);
-            dashTime += Time.deltaTime;
-            yield return null;
-        }
-    
-        isDashing = false;
-        rb.linearVelocity = Vector2.zero;
-    }
+    // private IEnumerator Dashing()
+    // {
+    //     float dashTime = 0;
+    //     int direction = rb.linearVelocityX > 0 ? 1 : -1;
+    //
+    //     float myPosX = rb.position.x;
+    //     float targetPosX = direction * state.dashForce;
+    //     
+    //     Vector2 startPos = new Vector2(myPosX, rb.position.y);
+    //     Vector2 endPos = new Vector2(targetPosX + myPosX, rb.position.y);
+    //
+    //     rb.linearVelocityY = 0;
+    //     while (dashTime < 0.15f)
+    //     {
+    //         rb.MovePosition(Vector2.Lerp(startPos,endPos, dashTime / 0.15f));
+    //         dashTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //
+    //     rb.MovePosition(endPos);
+    //     isDashing = false; 
+    //     
+    //     yield return new WaitForSeconds(state.dashCoolTime);
+    //
+    //     canDash = true;
+    // }
 }

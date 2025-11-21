@@ -778,7 +778,7 @@ MonoBehaviour:
   moveSpeed: 2.98
   jumpHeight: 6
   dashCoolTime: 0
-  dashForce: 5.52
+  dashForce: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

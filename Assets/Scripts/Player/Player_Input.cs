@@ -8,7 +8,7 @@ public class Player_Input : MonoBehaviour
     public event Action<Vector2> onMove;
     public event Action jumpStart;
     public event Action jumpEnd;
-    public event Action onDash;
+    // public event Action onDash;
     public void OnMove(InputAction.CallbackContext context)
     {
         onMove?.Invoke(context.ReadValue<Vector2>());
@@ -20,8 +20,8 @@ public class Player_Input : MonoBehaviour
         else if(context.canceled) jumpEnd?.Invoke();
     }
 
-    public void OnDash(InputAction.CallbackContext context)
-    {
-        onDash?.Invoke();
-    }
+    // public void OnDash(InputAction.CallbackContext context)
+    // {
+    //     if(context.started) onDash?.Invoke();
+    // }
 }
