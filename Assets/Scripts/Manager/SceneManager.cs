@@ -1,12 +1,11 @@
 using UnityEngine;
 
-// public enum SceneName
-// {
-//     MainMenu,
-//     Ingame,
-//     Loading,
-//     
-// }
+public enum SceneName
+{
+    MainMenu,
+    Ghotom,
+    Loading,
+}
 public class SceneManagement : MonoBehaviour
 {
     public static SceneManagement instance { get; private set; }
@@ -33,8 +32,8 @@ public class SceneManagement : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    // public void LoadScene(SceneName scene)
-    // {
-    //     UnityEngine.SceneManagement.SceneManager.LoadScene(scene.ToString());
-    // }
+    public void LoadScene(SceneName scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene.ToString());
+    }
 }
