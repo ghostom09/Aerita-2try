@@ -8,16 +8,16 @@ public class PlayerInputMoveConnecter : MonoBehaviour
     public void Connect()
     {
         input.onMove += move.SetMove;
-        input.jumpStart += move.JumpStart;
-        input.jumpEnd += move.JumpEnd;
-        // input.onDash += move.Dash;
+        input.JumpStart += move.JumpStart;
+        input.JumpEnd += move.JumpEnd;
+        input.onDash += move.Dash;
     }
 
     public void Disconnect()
     {
         input.onMove -= move.SetMove;
-        input.jumpStart -= move.JumpStart;
-        input.jumpEnd -= move.JumpEnd;
+        input.JumpStart -= move.JumpStart;
+        input.JumpEnd -= move.JumpEnd;
     }
 
     void Start()

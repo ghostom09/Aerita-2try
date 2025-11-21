@@ -13,8 +13,8 @@ public class Player_State : MonoBehaviour
     [Header("movement stat")] 
     public float moveSpeed;
     public float jumpHeight;
-    public float dashCoolTime;
-    public float dashForce;
-
+    public float dashCoolTime = 1f;
+    public float dashForce = 3f;
+    public float direction;
 
 }
