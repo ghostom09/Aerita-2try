@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class PlayerInputMoveConnecter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Player_Input input;
+    [SerializeField] private Player_Move move;
+
+    public void Connect()
     {
-        
+        input.onMove += move.SetMove;
+        input.jumpStart += move.JumpStart;
+        input.jumpEnd += move.JumpEnd;
+        input.onDash += move.Dash;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Disconnect()
     {
-        
+        input.onMove -= move.SetMove;
+        input.jumpStart -= move.JumpStart;
+        input.jumpEnd -= move.JumpEnd;
+    }
+
+    void Start()
+    {
+        Connect();
     }
 }
