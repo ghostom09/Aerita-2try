@@ -1,59 +1,79 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class Player_Move : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Player_State state;
-    private bool isGrounded;
-    private bool isHeld;
+    private bool _isGrounded;
+    private bool _isHeld;
 
-    private bool isDashing;
+    private bool _isDashing;
+    private bool _canDash = true;
     public void SetMove(Vector2 movement)
     {
-        if(!isDashing)
+        if (!_isDashing)
+        {
             rb.linearVelocityX = movement.x * state.moveSpeed;
+            state.direction = movement.x > 0 ? 1 : -1;
+            transform.localScale = new Vector3(state.direction * 0.7f, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     public void Dash()
     {
-        isDashing = true;
-        StartCoroutine(Dashing());
+        if (_canDash)
+        {
+             _isDashing = true;
+             _canDash = false;
+             StartCoroutine(Dashing());
+        }
+       
     }
     public void JumpStart()
     {
-        if (isGrounded)
+        if (_isGrounded)
         {
-            isHeld = true;
+            _isHeld = true;
             rb.linearVelocityY = state.jumpHeight;    
         }
     }
     public void JumpEnd()
     {
-        isHeld = false;
+        _isHeld = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f),
+        _isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f),
             new Vector2(0.7f, 0.2f), 0, LayerMask.GetMask("Ground"));
         if(rb.linearVelocityY < 0) rb.linearVelocityY += Physics.gravity.y * 1.5f * Time.deltaTime;
-        else if(!isGrounded && !isHeld) rb.linearVelocityY += Physics.gravity.y * 3 * Time.deltaTime;
+        else if(!_isGrounded && !_isHeld) rb.linearVelocityY += Physics.gravity.y * 3 * Time.deltaTime;
     }
-
     private IEnumerator Dashing()
     {
         float dashTime = 0;
-        int direction = rb.linearVelocityX > 0 ? 1 : -1;
+        float myPosX = rb.position.x;
+        float targetPosX = state.direction * state.dashForce;
+        
+        Vector2 startPos = new Vector2(myPosX, rb.position.y);
+        Vector2 endPos = new Vector2(targetPosX + myPosX, rb.position.y);
+    
+        rb.linearVelocityY = 0;
         while (dashTime < 0.15f)
         {
-            rb.linearVelocity = new Vector2(state.dashForce * direction,0);
+            rb.MovePosition(Vector2.Lerp(startPos,endPos, dashTime / 0.15f));
             dashTime += Time.deltaTime;
             yield return null;
         }
     
-        isDashing = false;
-        rb.linearVelocity = Vector2.zero;
+        rb.MovePosition(endPos);
+        _isDashing = false; 
+        
+        yield return new WaitForSeconds(state.dashCoolTime);
+    
+        _canDash = true;
     }
 }

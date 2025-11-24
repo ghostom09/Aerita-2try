@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class Player_Input : MonoBehaviour
 {
     public event Action<Vector2> onMove;
-    public event Action jumpStart;
-    public event Action jumpEnd;
+    public event Action JumpStart;
+    public event Action JumpEnd;
     public event Action onDash;
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -16,12 +16,12 @@ public class Player_Input : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started) jumpStart?.Invoke();
-        else if(context.canceled) jumpEnd?.Invoke();
+        if (context.started) JumpStart?.Invoke();
+        else if(context.canceled) JumpEnd?.Invoke();
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        onDash?.Invoke();
+        if(context.started) onDash?.Invoke();
     }
 }
