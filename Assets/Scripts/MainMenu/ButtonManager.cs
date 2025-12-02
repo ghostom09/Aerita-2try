@@ -14,7 +14,7 @@ public class ButtonManager : MonoBehaviour
 
     public void QuitYes()
     {
-        GameManager.instance.QuitGame();
+        GameManager.Instance.QuitGame();
     }
 
     public void QuitNo()

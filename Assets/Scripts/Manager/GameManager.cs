@@ -2,32 +2,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
-    
-        public GameManager Instance
-        {
-            get
-            {
-                if (null == instance)
-                {
-                    return null;
-                }
-                return instance;
-            }
-        }
+    public static GameManager Instance { get; private set; }
     
         void Awake()
         {
-            if (null == instance)
+            if (null == Instance)
             {
-                instance = this;
-                DontDestroyOnLoad(this);
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else Destroy(gameObject);
+        }
+
+        void Start()
+        {
+            Player_Data loaded = Save_Manager.Instance.Load();
         }
     
         public void QuitGame()
         {
+            
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
             #else
