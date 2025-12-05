@@ -22,8 +22,11 @@ public class Enemy : MonoBehaviour
     {
         stateMachine.Update();
     }
-    
-    
+
+    public void AttackPlayer(Player_Defense playerD)
+    {
+        playerD.Hit(stat.damage);
+    }
 }
 
 [Serializable]
@@ -34,7 +37,7 @@ public class state
     public float currentHp;
     public float damage;
     public float range;
-
+    public float attackCoolTime;
 
     [Header("movement stat")] 
     public float moveSpeed;

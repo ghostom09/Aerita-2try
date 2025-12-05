@@ -6,6 +6,7 @@ public class IdleState : EnemyBaseState
     public override void OnEnter()
     {
         Debug.Log("Idle Enter");
+        enemy.rb.linearVelocity = Vector2.zero;
     }
 
     public override void OnUpdate()
