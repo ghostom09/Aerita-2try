@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
-        stateMachine.ChangeState(new IdleState(this)); // 처음 상태: 도움 요청
+        stateMachine.ChangeState(new IdleState(this));
     }
     void Update()
     {
@@ -26,6 +26,12 @@ public class Enemy : MonoBehaviour
     public void AttackPlayer(Player_Defense playerD)
     {
         playerD.Hit(stat.damage);
+    }
+
+
+    public void Hit(float damage)
+    {
+        stat.currentHp -= damage;
     }
 }
 
