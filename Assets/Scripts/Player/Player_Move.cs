@@ -9,17 +9,13 @@ public class Player_Move : MonoBehaviour
     [SerializeField] private Player_State state;
     private bool _isGrounded;
     private bool _isHeld;
+    private Vector2 movement;
 
     private bool _isDashing;
     private bool _canDash = true;
-    public void SetMove(Vector2 movement)
+    public void SetMove(Vector2 move)
     {
-        if (!_isDashing)
-        {
-            rb.linearVelocityX = movement.x * state.moveSpeed;
-            state.direction = movement.x > 0 ? 1 : -1;
-            transform.localScale = new Vector3(state.direction * 0.7f, transform.localScale.y, transform.localScale.z);
-        }
+        movement = move;
     }
 
     public void Dash()
@@ -47,8 +43,14 @@ public class Player_Move : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!_isDashing)
+        {
+            rb.linearVelocityX = movement.x * state.moveSpeed;
+            state.direction = movement.x > 0 ? 1 : -1;
+        }
+        
         _isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f),
-            new Vector2(0.7f, 0.2f), 0, LayerMask.GetMask("Ground"));
+            new Vector2(0.6f, 0.2f), 0, LayerMask.GetMask("Ground"));
         if(rb.linearVelocityY < 0) rb.linearVelocityY += Physics.gravity.y * 1.5f * Time.deltaTime;
         else if(!_isGrounded && !_isHeld) rb.linearVelocityY += Physics.gravity.y * 3 * Time.deltaTime;
     }

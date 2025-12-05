@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 8687309839385715680}
   - component: {fileID: 2597798476049085087}
   - component: {fileID: 5065961524526893664}
+  - component: {fileID: 5924485792934351321}
+  - component: {fileID: 3884743335668585108}
+  - component: {fileID: 8264527454626630626}
   - component: {fileID: 3902285889298155526}
   - component: {fileID: 8831418001985753370}
   m_Layer: 0
@@ -218,6 +221,46 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.99716735, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5924485792934351321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643889785575572827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f8281913e2cde4dbb5503e60ce24f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_Attack
+  player: {fileID: 1895519116002135160}
+--- !u!114 &3884743335668585108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643889785575572827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8f66dec5179ca479d37704e5e6ca9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_Defense
+  state: {fileID: 1895519116002135160}
+--- !u!114 &8264527454626630626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643889785575572827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cf7504e4a0f964d97eca31e9b63d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputAttackConnector
+  input: {fileID: 8687309839385715680}
+  attack: {fileID: 5924485792934351321}
 --- !u!50 &3902285889298155526
 Rigidbody2D:
   serializedVersion: 5
@@ -244,7 +287,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8831418001985753370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +334,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8687309839385715680}
+        m_TargetAssemblyTypeName: Player_Input, Assembly-CSharp
+        m_MethodName: NormalAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:

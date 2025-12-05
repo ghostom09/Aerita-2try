@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInputMoveConnecter : MonoBehaviour
+public class PlayerInputMoveConnector : MonoBehaviour
 {
     [SerializeField] private Player_Input input;
     [SerializeField] private Player_Move move;
