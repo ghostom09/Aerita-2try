@@ -10,7 +10,7 @@ public class Player_Input : MonoBehaviour
     public event Action JumpStart;
     public event Action JumpEnd;
     public event Action onDash;
-    public event Action normalAttack;
+    public event Action attack;
     public void OnMove(InputAction.CallbackContext context)
     {
         onMove?.Invoke(context.ReadValue<Vector2>());
@@ -28,7 +28,7 @@ public class Player_Input : MonoBehaviour
     }
     public void NormalAttack(InputAction.CallbackContext context)
     {
-        if(context.started) normalAttack?.Invoke();
+        if(context.started) attack?.Invoke();
     }
 
 }

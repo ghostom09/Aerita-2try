@@ -15,6 +15,6 @@ public class Player_State : MonoBehaviour
     public float jumpHeight;
     public float dashCoolTime = 1f;
     public float dashForce = 3f;
-    public float direction;
+    public int direction;
 
 }

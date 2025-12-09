@@ -46,7 +46,8 @@ public class Player_Move : MonoBehaviour
         if (!_isDashing)
         {
             rb.linearVelocityX = movement.x * state.moveSpeed;
-            state.direction = movement.x > 0 ? 1 : -1;
+            if (movement.x > 0) state.direction = 1;
+            else if(movement.x < 0) state.direction = -1;
         }
         
         _isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f),
